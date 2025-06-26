@@ -14,6 +14,9 @@ ENV PATH=/usr/local/bin:$PATH
 # Surpress "ROS Noetic goes end-of-life 2025-05-31" warning
 ENV DISABLE_ROS1_EOL_WARNINGS=1
 
+# Create XDG runtime directory with proper permissions
+RUN mkdir -p /tmp/runtime-root && chmod 0700 /tmp/runtime-root
+
 RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     # Install some basic utilities
     git \
