@@ -1,3 +1,11 @@
+# Docker RViz
+
+Minimum example for running RViz within a Docker container.
+
+Tested on Ubuntu 24.04.2.
+
+## Building
+
 Run this script to set up X11
 
 ```bash
@@ -15,6 +23,8 @@ Or build without cache
 ```bash
 docker compose up -d --build --force-recreate
 ```
+
+## Running
 
 Then run the container
 
