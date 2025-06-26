@@ -11,18 +11,28 @@ RUN mkdir repos
 ENV SHELL=/bin/bash
 ENV PATH=/usr/local/bin:$PATH
 
+# Surpress "ROS Noetic goes end-of-life 2025-05-31" warning
+ENV DISABLE_ROS1_EOL_WARNINGS=1
+
 RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+    # Install some basic utilities
     git \
     curl \
     cmake \
     wget \
     vim \
     tmux \
-    python3-catkin-tools \
-    ros-noetic-catkin
+    # Install dependencies
+    ros-noetic-catkin \
+    python3-catkin-tools
 
+# Build catkin
+RUN /bin/bash -c "cd $CATKIN_WS && \
+    source /opt/ros/$ROS_DISTRO/setup.sh && \
+    catkin init && \
+    catkin build && \
+    source devel/setup.bash"
+
+# Update .bashrc
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.sh" >> /root/.bashrc
 RUN echo "source /home/$CATKIN_WS/devel/setup.bash" >> /root/.bashrc   
-
-# Set the default command to bash
-CMD ["/bin/bash"]

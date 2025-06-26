@@ -18,5 +18,3 @@ chmod 777 $XAUTH
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
 echo "X11 authentication setup complete."
-echo "You can now run: docker-compose up -d"
-echo "Then connect with: docker-compose exec rviz-test bash"

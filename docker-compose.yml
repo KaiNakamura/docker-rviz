@@ -1,9 +1,7 @@
-version: "3.8"
-
 services:
-  rviz-test:
+  docker-rviz:
     build: .
-    container_name: rviz-container
+    container_name: docker-rviz
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
