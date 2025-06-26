@@ -18,7 +18,7 @@ Then build the contianer
 docker compose up -d
 ```
 
-Or build without cache
+Or to force rebuilding
 
 ```bash
 docker compose up -d --build --force-recreate
