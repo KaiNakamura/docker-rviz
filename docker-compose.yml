@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  rviz-test:
+    build: .
+    container_name: rviz-container
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - XAUTHORITY=/tmp/.docker.xauth
+      - XDG_RUNTIME_DIR=/tmp/runtime-root
+      - LIBGL_ALWAYS_SOFTWARE=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
+      - ./:/workspace
+    network_mode: host
+    stdin_open: true
+    tty: true
+    privileged: true
+    command: /bin/bash
