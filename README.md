@@ -1,6 +1,6 @@
 # Docker RViz
 
-Minimum example for running RViz within a Docker container.
+Minimum example for running RViz within a Docker container (should also work fine with other GUI applications).
 
 Tested on Ubuntu 24.04.2.
 
@@ -8,19 +8,20 @@ Tested on Ubuntu 24.04.2.
 
 Run this script to set up X11
 
+- If you get permission errors try elevating with `sudo`
+- Or try removing any `.docker.xauth` files from the `/tmp` directory manually with `sudo rm -rf /tmp/.docker.xauth*`
+- Note that if you see errors later like `glfw error 65544: X11: Failed to open display :1` or `failed to initialize GLFW` you'll need to revisit this step and rebuild the container
+
 ```bash
-bash setup-x11.sh
+./setup_x11.sh
 ```
 
 Then build the contianer
 
 ```bash
 docker compose up -d
-```
 
-Or to force rebuilding
-
-```bash
+# Or to force rebuilding
 docker compose up -d --build --force-recreate
 ```
 
@@ -29,7 +30,7 @@ docker compose up -d --build --force-recreate
 Then run the container
 
 ```bash
-docker compose exec docker-rviz bash
+./run_docker.sh
 ```
 
 Now run `roscore` from within the container.
