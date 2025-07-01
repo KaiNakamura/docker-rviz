@@ -1,6 +1,6 @@
 FROM osrf/ros:noetic-desktop-full
 
-WORKDIR /home
+WORKDIR /root
 
 # Set up the workspace environment
 ENV CATKIN_WS=catkin_ws
@@ -38,4 +38,4 @@ RUN /bin/bash -c "cd $CATKIN_WS && \
 
 # Update .bashrc
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.sh" >> /root/.bashrc
-RUN echo "source /home/$CATKIN_WS/devel/setup.bash" >> /root/.bashrc   
+RUN echo "source /root/$CATKIN_WS/devel/setup.bash" >> /root/.bashrc   
